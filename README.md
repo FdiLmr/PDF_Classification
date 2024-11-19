@@ -1,13 +1,12 @@
 # PDF Classification Project
 
-This project aims to classify PDF documents into broad categories using AI-powered analysis. It utilizes OpenAI's GPT models to analyze PDF content and assign appropriate tags.
+This project aims to classify PDF documents into broad categories using AI-powered analysis. It utilizes multiple Large Language Models to analyze PDF content and assign appropriate tags.
 
 ## Datasets and Resources
 
 - [URL Classifications Dataset](https://huggingface.co/datasets/snats/url-classifications)
 - [URL Embeddings Dataset](https://www.kaggle.com/datasets/santiagopedroza/url-embeddings-cc-provenance)
 - [CC-MAIN-2021-31-PDF-UNTRUNCATED Data Card](https://corp.digitalcorpora.org/corpora/files/CC-MAIN-2021-31-PDF-UNTRUNCATED/)
-- [Original Code Repository](https://github.com/snat-s/m/tree/main/classify_metadata/)
 
 ## Project Structure
 
