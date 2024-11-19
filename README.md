@@ -1,58 +1,54 @@
-# PDF Classification Project
+# PDF Classification using LLMs, Embedding Models, XGBoost and Linear Regressors
 
-This project aims to classify PDF documents into broad categories using AI-powered analysis. It utilizes multiple Large Language Models to analyze PDF content and assign appropriate tags.
+## Overview
 
-## Datasets and Resources
+This project focuses on classifying a massive dataset of PDFs from the **SafeDocs corpus** using a combination of **Large Language Models (LLMs)**, **XGBoost**, and other machine learning techniques. The dataset includes over **8.4 million PDFs**, making this a large-scale exploration of both deep learning and traditional machine learning methods.
 
-- [URL Classifications Dataset](https://huggingface.co/datasets/snats/url-classifications)
-- [URL Embeddings Dataset](https://www.kaggle.com/datasets/santiagopedroza/url-embeddings-cc-provenance)
-- [CC-MAIN-2021-31-PDF-UNTRUNCATED Data Card](https://corp.digitalcorpora.org/corpora/files/CC-MAIN-2021-31-PDF-UNTRUNCATED/)
-
-## Project Structure
-
-- `training.py`: Main script for PDF classification
-- `prompt.txt`: Contains the prompt used for classification
-- `.env`: Stores environment variables (e.g., OpenAI API key)
-- `.gitignore`: Specifies intentionally untracked files to ignore
-
-## Setup and Installation
-
-1. Clone the repository
-2. Create a virtual environment:
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-   ```
-3. Install required packages:
-   ```
-   pip install openai python-dotenv pandas tqdm
-   ```
-4. Create a `.env` file in the project root and add your OpenAI API key:
-   ```
-   OPENAI_API_KEY=your_api_key_here
-   ```
-
-## Usage
-
-1. Ensure your input CSV file is in the `./data/` directory
-2. Run the classification script:
-   ```
-   python training.py
-   ```
-3. The script will generate an output CSV file with classifications added
+---
 
 ## Features
 
-- Uses OpenAI's GPT-3.5-turbo model for classification
-- Supports custom prompts for classification
-- Handles errors and continues processing
-- Outputs results to a CSV file
+- **Few-Shot Prompting**: Leveraged LLMs (Llama-3-70B) for initial label generation from PDF metadata.
+- **Embeddings-Based Classification**: Used pretrained embeddings models (e.g., `gte-large`) fine-tuned for specific labels.
+- **Tabular Data Techniques**: Applied XGBoost and TF-IDF for lightweight and efficient classification.
+- **Dimensionality Reduction**: Visualized embeddings and classifications with PCA and UMAP.
 
-## Contributing
+---
 
-Contributions, issues, and feature requests are welcome. Feel free to check [issues page](https://github.com/yourusername/pdf-classification-project/issues) if you want to contribute.
+## Dataset
 
-## License
+1. **SafeDocs PDF Dataset**  
+   - 📥 [Download from Digital Corpora](https://corp.digitalcorpora.org/corpora/files/CC-MAIN-2021-31-PDF-UNTRUNCATED/)  
+   - Total size: 8TB (uncompressed)  
+   - Includes metadata for all PDFs.
 
-[MIT](https://choosealicense.com/licenses/mit/)
+2. **Generated Labels and Embeddings**  
+   - 📥 [Labels on Hugging Face](https://huggingface.co/datasets/snats/url-classifications)  
+   - 📥 [Embeddings on Kaggle](https://www.kaggle.com/datasets/santiagopedroza/url-embeddings-cc-provenance)  
+
+---
+
+## Results
+
+| **Model**                      | **Accuracy** |  
+|--------------------------------|--------------|  
+| gte-large (59k labels)         | 59.14%       |  
+| **XGBoost (Embeddings)**       | **85.26%**   |  
+| XGBoost (TF-IDF)               | 67.52%       |  
+| Linear Regressor (TF-IDF)      | 70.68%       |  
+| gte-large (400k labels)        | 69.22%       |  
+
+---
+
+## Visualizations
+
+### PCA
+- A 2D projection of 8.4M PDFs based on their embeddings.
+
+![PCA Visualization](./assets/pca_visualization_8448751_samples.png)
+
+### UMAP
+- A high-dimensional visualization of 6.5M classified PDFs.
+
+![UMAP Visualization](./assets/umap_visualization_6500000_samples.png)
 
